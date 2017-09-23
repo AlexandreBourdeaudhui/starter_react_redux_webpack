@@ -4,8 +4,8 @@
 ## :sunny: How that work ?
  * Download it.
  * Install Package :
-  * With **Yarn** : `yarn`
-  * With **NPM** : `npm install`
+   * With **Yarn** : `yarn`
+   * With **NPM** : `npm i`
 
 
  * Launch _watcher_ :
