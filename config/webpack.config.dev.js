@@ -15,6 +15,18 @@ const webpack = require('webpack');
 /*
  * Webpack Config
  */
+
+// CSS Loader
+const cssLoaders = [
+  {
+    loader: 'css-loader',
+    options: {
+      importLoaders: 1,
+      sourceMap: true,
+    },
+  },
+];
+
 const config = {
   // Entry Point.
   entry: {
@@ -36,6 +48,7 @@ const config = {
   resolve: {
     // Where is Webpack need to see / resolve file.
     modules: ['node_modules', path.resolve('app')],
+    extensions: ['.js', '.json', '.jsx'],
   },
 
   // Rules / Loaders
@@ -50,29 +63,28 @@ const config = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+          // This is a feature of `babel-loader` for webpack (not Babel itself).
+          // It enables caching results in ./node_modules/.cache/babel-loader/
+          // directory for faster rebuilds.
+            cacheDirectory: true,
+          },
+        },
       },
       {
         test: /\.css$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: {
-            loader: 'css-loader',
-            options: { importLoaders: 1, minimize: false },
-          },
+          use: cssLoaders,
         }),
       },
       {
         test: /\.(scss|sass)$/,
         use: ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use: [
-            {
-              loader: 'css-loader',
-              options: { importLoaders: 1, minimize: false },
-            },
-            'sass-loader',
-          ],
+          use: [...cssLoaders, 'sass-loader'],
         }),
       },
       {
@@ -103,11 +115,12 @@ const config = {
       disable: true,
     }),
 
+    // HMR Css
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
   ],
 
-  // Options watch
+  // If you need to reload auto during the dev
   watch: true,
 
   // devtool controls if and how source maps are generated.
@@ -115,11 +128,24 @@ const config = {
 
   // Settings devServer.
   devServer: {
+    // Enable gzip compression of generated files.
+    // compress: true,
     contentBase: path.resolve('./app/assets'),
+
+    // Active HMR
     hot: true,
+
+    // Display an overlay in your browser when you got an error
     overlay: true,
     port: 3000,
-    stats: 'minimal',
+
+    // What do you need display in your console?
+    // "errors-only" | "minimal" \ "none" | "normal" | "detailed" | "verbose"
+    // https://webpack.js.org/configuration/stats/#stats
+    stats: {
+      errors: true,
+      modules: false,
+    },
     watchOptions: {
       ignored: /node_modules/,
     },

@@ -12,6 +12,8 @@
  * Code
  */
 const createMiddleware = store => next => (action) => {
+  console.log(store);
+
   switch (action.type) {
     /*
      * Default

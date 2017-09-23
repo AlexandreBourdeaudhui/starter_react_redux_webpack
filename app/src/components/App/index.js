@@ -17,7 +17,7 @@ import './app.scss';
  */
 const App = () => (
   <div id="app">
-    Hello World !
+    Hello World
   </div>
 );
 

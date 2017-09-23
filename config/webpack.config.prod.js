@@ -15,6 +15,11 @@ const autoprefixer = require('autoprefixer');
  */
 
 
+/*
+ * Webpack Config
+ */
+
+// CSS Loader
 const cssLoaders = [
   {
     loader: 'css-loader',
@@ -30,10 +35,6 @@ const cssLoaders = [
   },
 ];
 
-
-/*
- * Webpack Config
- */
 const config = {
   // Entry point.
   entry: {
@@ -46,7 +47,7 @@ const config = {
   // Output point.
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].[chunkhash].js',
+    filename: 'js/[name].[chunkhash].js',
     publicPath: '/',
   },
 
@@ -54,6 +55,7 @@ const config = {
   resolve: {
     // Where is Webpack need to see / resolve file.
     modules: ['node_modules', path.resolve('app')],
+    extensions: ['.js', '.json', '.jsx'],
   },
 
   // Rules / Loaders
@@ -105,17 +107,29 @@ const config = {
 
   // Plugins.
   plugins: [
+    // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
+      inject: true,
       filename: 'index.html',
       template: './app/assets/index.html',
+      minify: {
+        removeComments: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
 
     new ExtractTextPlugin({
-      filename: '[name].[contenthash].css',
+      filename: 'css/[name].[contenthash].css',
       disable: false,
     }),
 
-    new UglifyJS({ sourceMap: false }),
+    new UglifyJS({
+      compress: { warnings: false },
+      output: { comments: false },
+      sourceMap: false,
+    }),
 
     new ManifestPlugin(),
 
