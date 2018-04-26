@@ -3,24 +3,15 @@
  */
 import React from 'react';
 
-
 /*
  * Local Import
  */
-
-// Style
 import './app.scss';
 
-
 /*
- * Code
+ * Components
  */
-const App = () => (
-  <div id="app">
-    Hello World
-  </div>
-);
-
+const App = () => <div id="app">Hello World</div>;
 
 /*
  * Export

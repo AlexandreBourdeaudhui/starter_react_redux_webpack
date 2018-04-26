@@ -3,14 +3,15 @@
  */
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const ManifestPlugin = require('webpack-manifest-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const webpack = require('webpack');
-
+const UglifyJS = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 /*
  * Local Import
  */
-
 
 /*
  * Webpack Config
@@ -20,27 +21,33 @@ const webpack = require('webpack');
 const cssLoaders = [
   {
     loader: 'css-loader',
+    options: { importLoaders: 1, minimize: true },
+  },
+  {
+    loader: 'postcss-loader',
     options: {
-      importLoaders: 1,
-      sourceMap: true,
+      plugins: () => [
+        autoprefixer({
+          browsers: ['last 2 versions', 'ie > 8'],
+        }),
+      ],
     },
   },
 ];
 
 const config = {
-  // Entry Point.
+  // Mode
+  mode: 'production',
+
+  // Entry point.
   entry: {
-    app: [
-      'react-hot-loader/patch',
-      './app/style/index.scss',
-      './app/src/index.js',
-    ],
+    app: ['./app/style/index.scss', './app/src/index.js'],
   },
 
-  // Output Point
+  // Output point.
   output: {
     path: path.resolve('./dist'),
-    filename: '[name].js',
+    filename: 'js/[name].[chunkhash].js',
     publicPath: '/',
   },
 
@@ -63,15 +70,7 @@ const config = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-          // This is a feature of `babel-loader` for webpack (not Babel itself).
-          // It enables caching results in ./node_modules/.cache/babel-loader/
-          // directory for faster rebuilds.
-            cacheDirectory: true,
-          },
-        },
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
@@ -96,62 +95,51 @@ const config = {
         use: [
           {
             loader: 'url-loader',
-            options: { limit: 8192, name: '[name].[hash].[ext]' },
+            options: {
+              limit: 8192,
+              name: '[name].[hash].[ext]',
+            },
           },
         ],
       },
     ],
   },
 
-  // Plugins
+  // Plugins.
   plugins: [
+    // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
+      inject: true,
       filename: 'index.html',
       template: './app/assets/index.html',
+      minify: {
+        removeComments: true,
+        minifyJS: true,
+        minifyCSS: true,
+        minifyURLs: true,
+      },
     }),
 
     new ExtractTextPlugin({
-      filename: '[name].css',
-      disable: true,
+      filename: 'css/[name].[contenthash].css',
+      disable: false,
     }),
 
-    // HMR Css
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.NamedModulesPlugin(),
+    new UglifyJS({
+      compress: { warnings: false },
+      output: { comments: false },
+      sourceMap: false,
+    }),
+
+    new ManifestPlugin(),
+
+    new CleanWebpackPlugin(['dist'], {
+      root: path.resolve('./'),
+      verbose: true,
+      dry: false,
+    }),
   ],
-
-  // If you need to reload auto during the dev
-  watch: true,
-
-  // devtool controls if and how source maps are generated.
-  devtool: 'cheap-module-eval-source-map',
-
-  // Settings devServer.
-  devServer: {
-    // Enable gzip compression of generated files.
-    // compress: true,
-    contentBase: path.resolve('./app/assets'),
-
-    // Active HMR
-    hot: true,
-
-    // Display an overlay in your browser when you got an error
-    overlay: true,
-    port: 3000,
-
-    // What do you need display in your console?
-    // "errors-only" | "minimal" \ "none" | "normal" | "detailed" | "verbose"
-    // https://webpack.js.org/configuration/stats/#stats
-    stats: {
-      errors: true,
-      modules: false,
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-  },
 };
-
 
 /*
  * Export
