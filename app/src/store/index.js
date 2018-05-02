@@ -31,6 +31,7 @@ const allMiddlewares = compose(middleware, ...devTools);
 // Store
 const store = createStore(reducer, allMiddlewares);
 
+
 /*
  * Export
  */

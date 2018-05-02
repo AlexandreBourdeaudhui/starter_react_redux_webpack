@@ -1,23 +1,24 @@
 /*
  * Package Import
  */
-
+import { connect } from 'react-redux';
 
 /*
  * Local Import
  */
-
+import App from 'src/components/App';
 
 /*
  * Code
  */
 
+// State
+const mapStateToProps = null;
 
-/*
- * Component
- */
-
+// Actions
+const mapDispatchToProps = null;
 
 /*
  * Export
  */
+export default connect(mapStateToProps, mapDispatchToProps)(App);

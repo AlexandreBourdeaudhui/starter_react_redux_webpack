@@ -4,6 +4,7 @@
   "rules": {
     "brace-style": ["error", "stroustrup", { "allowSingleLine": true }],
     "class-methods-use-this": "off",
+    "import/prefer-default-export": "off",
     "jsx-a11y/no-static-element-interactions": "off",
     "max-len": ["error", { "ignoreUrls": true }, { "ignoreStrings": false }, { "code": 80 }],
     "no-console": "off",
@@ -14,7 +15,6 @@
     "no-underscore-dangle": "off",
     "no-mixed-operators": ["error", { "allowSamePrecedence": true }],
     "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-    "no-unused-vars": "warn",
     "react/jsx-filename-extension": "off",
     "react/no-danger": "off",
     "react/forbid-prop-types": "off",

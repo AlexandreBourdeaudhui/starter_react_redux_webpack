@@ -6,10 +6,10 @@ import React from 'react';
 /*
  * Local Import
  */
-import './app.scss';
+import './index.scss';
 
 /*
- * Components
+ * Component
  */
 const App = () => <div id="app">Hello World</div>;
 
