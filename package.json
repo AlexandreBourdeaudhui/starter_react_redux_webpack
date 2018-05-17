@@ -9,8 +9,8 @@
     "start": "NODE_ENV=development webpack-dev-server",
     "build": "NODE_ENV=production webpack",
     "test": "test(){ if [ -z $1 ]; then mocha tests/.setup.js 'tests/**/*.test.js'; else mocha tests/.setup.js $1 $2; fi; }; test",
-    "lint": "eslint --fix '{app,tests}/**/*.{js,json}'",
-    "pretty": "prettier --write '{app,tests}/**/*.{js,json}'",
+    "lint": "eslint --fix '{app,tests}/**/*.js'",
+    "pretty": "prettier --write '{app,tests}/**/*.js'",
     "precommit": "lint-staged && yarn test"
   },
   "lint-staged": {
