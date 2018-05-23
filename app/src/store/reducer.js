@@ -1,28 +1,19 @@
 /*
- * Types
+ * Package Import
  */
-
+import { combineReducers } from 'redux';
 
 /*
- * initialState
+ * Local Import
  */
-const initialState = {};
-
+import app from 'src/store/ducks/app';
 
 /*
- * Reducer
+ * Combine ...Reducers
  */
-export default (state = initialState, action = {}) => {
-  switch (action.type) {
-    /*
-     * Default
-     */
-    default:
-      return state;
-  }
-};
-
+const reducer = combineReducers({ app });
 
 /*
- * Actions Creator
+ * Export
  */
+export default reducer;

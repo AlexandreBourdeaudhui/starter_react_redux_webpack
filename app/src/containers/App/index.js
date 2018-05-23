@@ -16,7 +16,7 @@ import App from 'src/components/App';
 const mapStateToProps = null;
 
 // Actions
-const mapDispatchToProps = null;
+const mapDispatchToProps = {};
 
 /*
  * Export
