@@ -34,6 +34,12 @@ const config = {
     publicPath: '/',
   },
 
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
+  },
+
   // Plugins
   plugins: [
     new HtmlWebpackPlugin({
@@ -74,8 +80,7 @@ const config = {
     // https://webpack.js.org/configuration/stats/#stats
     stats: {
       colors: true,
-      errors: true,
-      reasons: true,
+      modules: false,
       timings: true,
     },
     watchOptions: {
