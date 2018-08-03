@@ -15,8 +15,8 @@
   },
   "lint-staged": {
     "*.js": [
-      "yarn pretty",
-      "yarn lint",
+      "prettier --write",
+      "eslint --fix",
       "git add"
     ]
   },
