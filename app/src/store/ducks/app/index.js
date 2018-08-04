@@ -1,7 +1,7 @@
 /*
  * Types
  */
-const SET_DATAS = 'SET_DATAS';
+const SET_DATA = 'SET_DATA';
 
 /*
  * Initial State
@@ -11,29 +11,29 @@ const initialState = {};
 /*
  * Reducer
  */
-export default (prevState = initialState, action = {}) => {
+export default (state = initialState, action = {}) => {
   switch (action.type) {
     /*
-     * Datas
+     * Data
      */
-    case SET_DATAS:
+    case SET_DATA:
       return {
-        ...prevState,
-        ...action.datas,
+        ...state,
+        ...action.data,
       };
 
-    // If no action is found, Just return the actual state
+    // If no action is found, Just return the state
     default:
-      return prevState;
+      return state;
   }
 };
 
 /*
  * Actions Creators
  */
-export const setDatas = datas => ({
-  type: SET_DATAS,
-  datas,
+export const setData = data => ({
+  type: SET_DATA,
+  data,
 });
 
 /*

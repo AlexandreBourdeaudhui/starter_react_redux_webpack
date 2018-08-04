@@ -5,7 +5,7 @@
 /*
  * Types
  */
-const GET_DATAS = 'GET_DATAS';
+const GET_DATA = 'GET_DATA';
 
 /*
  * Middleware
@@ -16,7 +16,7 @@ export default store => next => (action) => {
      * If the desired action has been triggered,
      * We can get the state, dispatch an action, ajax...
      */
-    case GET_DATAS:
+    case GET_DATA:
       // eslint-disable-next-line no-console
       console.log('store', store);
       break;
@@ -35,6 +35,6 @@ export default store => next => (action) => {
 /*
  * Actions Creators
  */
-export const getDatas = () => ({
-  type: GET_DATAS,
+export const getData = () => ({
+  type: GET_DATA,
 });
