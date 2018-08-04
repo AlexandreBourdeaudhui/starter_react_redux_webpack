@@ -7,6 +7,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 /*
  * Local Import
@@ -35,7 +36,14 @@ const config = {
   optimization: {
     minimizer: [
       // Uglify JS files
-      new UglifyJsPlugin(),
+      new UglifyJsPlugin({
+        cache: true,
+        parallel: true,
+        sourceMap: false,
+      }),
+
+      //  Minify CSS Files
+      new OptimizeCSSAssetsPlugin({}),
     ],
   },
 

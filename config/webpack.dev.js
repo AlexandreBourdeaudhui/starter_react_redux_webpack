@@ -34,13 +34,6 @@ const config = {
     publicPath: '/',
   },
 
-  // Optimization › Split the App and vendor files
-  optimization: {
-    splitChunks: {
-      chunks: 'all',
-    },
-  },
-
   // Plugins
   plugins: [
     new HtmlWebpackPlugin({
@@ -81,6 +74,9 @@ const config = {
 
     // Display an overlay in your browser when you got an error
     overlay: true,
+
+    // Build progress in console
+    progress: true,
     port: 3000,
 
     // What do you need display in your console?

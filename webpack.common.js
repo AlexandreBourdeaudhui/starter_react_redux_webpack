@@ -8,9 +8,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 /*
  * Local Import
  */
-const configDev = require('./config/webpack.config.dev');
-const configProd = require('./config/webpack.config.prod');
-
+const configDev = require('./config/webpack.dev');
+const configProd = require('./config/webpack.prod');
 
 /*
  * Utils
@@ -47,6 +46,13 @@ const config = Object.assign(
       // Where Webpack is need to seeing / resolving files.
       modules: ['node_modules', path.resolve('./app')],
       extensions: ['.js', '.jsx', '.json'],
+    },
+
+    // Optimization › Split the App and vendor files
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+      },
     },
 
     // Rules / Loaders
