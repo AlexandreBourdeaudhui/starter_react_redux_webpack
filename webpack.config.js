@@ -1,8 +1,8 @@
 /*
  * Package Import
  */
-const autoprefixer = require('autoprefixer');
 const path = require('path');
+const autoprefixer = require('autoprefixer');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 /*
@@ -11,11 +11,15 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const configDev = require('./config/webpack.config.dev');
 const configProd = require('./config/webpack.config.prod');
 
+
 /*
- * Code
+ * Utils
  */
 const isDevelopment = process.env.NODE_ENV === 'development';
 
+/*
+ * Css Loaders
+ */
 const cssLoaders = [
   {
     loader: 'css-loader',
@@ -41,7 +45,7 @@ const config = Object.assign(
     // Resolve
     resolve: {
       // Where Webpack is need to seeing / resolving files.
-      modules: ['node_modules', path.resolve('app')],
+      modules: ['node_modules', path.resolve('./app')],
       extensions: ['.js', '.jsx', '.json'],
     },
 
@@ -61,15 +65,15 @@ const config = Object.assign(
             loader: 'babel-loader',
             options: {
               /*
-             * This is a feature of `babel-loader` for webpack,
-             * Not Babel itsel.
-             *
-             * It enables caching results in
-             * [./node_modules/.cache/babel-loader/] directory
-             * For faster rebuilds.
-             *
-             * https://github.com/babel/babel-loader#options
-             */
+               * This is a feature of `babel-loader` for webpack,
+               * Not Babel itself.
+               *
+               * It enables caching results in
+               * [./node_modules/.cache/babel-loader/] directory
+               * For faster rebuilds.
+               *
+               * https://github.com/babel/babel-loader#options
+               */
               cacheDirectory: isDevelopment,
             },
           },

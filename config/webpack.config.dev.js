@@ -21,7 +21,7 @@ const config = {
   entry: {
     app: [
       'react-hot-loader/patch',
-      './app/styles/index.scss',
+      './app/styles/base.scss',
       './app/src/index.js',
     ],
   },
@@ -34,6 +34,7 @@ const config = {
     publicPath: '/',
   },
 
+  // Optimization › Split the App and vendor files
   optimization: {
     splitChunks: {
       chunks: 'all',
@@ -63,14 +64,20 @@ const config = {
   // If we need to reload automagically during the dev
   watch: true,
 
-  // Settings devServer.
+  // Settings devServer
   devServer: {
     // Enable gzip compression of generated files
-    // compress: true,
-    contentBase: path.resolve('./app/assets'),
+    compress: true,
+    contentBase: path.resolve('./dist'),
 
     // Active HMR
     hot: true,
+
+    // Fix the problem with React-Router (Cannot get /route when we refresh)
+    historyApiFallback: true,
+
+    // Open the Nav when we start the devServer
+    open: false,
 
     // Display an overlay in your browser when you got an error
     overlay: true,

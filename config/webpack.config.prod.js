@@ -4,7 +4,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
-const UglifyJS = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -21,7 +21,7 @@ const config = {
 
   // Entry
   entry: {
-    app: ['./app/styles/index.scss', './app/src/index.js'],
+    app: ['./app/styles/base.scss', './app/src/index.js'],
   },
 
   // Output
@@ -30,6 +30,13 @@ const config = {
     filename: 'js/[name].[chunkhash].js',
     chunkFilename: 'js/[name].[chunkhash].chunk.js',
     publicPath: '/',
+  },
+
+  optimization: {
+    minimizer: [
+      // Uglify JS files
+      new UglifyJsPlugin(),
+    ],
   },
 
   // Plugins
@@ -47,21 +54,17 @@ const config = {
       },
     }),
 
+    // CSS
     new MiniCssExtractPlugin({
       filename: 'css/[name].[contenthash].css',
       chunkFilename: 'css/[name].[contenthash].chunk.css',
     }),
 
-    new UglifyJS({
-      uglifyOptions: {
-        compress: { warnings: false },
-        output: { comments: false },
-      },
-      sourceMap: false,
-    }),
-
+    // Generate a `manifest.json` for the index.html
+    // With JS and CSS link, generate with a hash
     new ManifestPlugin(),
 
+    // Clear the `dist` folder
     new CleanWebpackPlugin(['dist'], {
       root: path.resolve('./'),
       verbose: true,
