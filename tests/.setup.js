@@ -9,7 +9,7 @@ var Enzyme = require('enzyme');
 var Adapter = require('enzyme-adapter-react-16');
 
 // Babel
-var babelRegister = require('babel-register');
+var babelRegister = require('babel-core/register');
 
 /*
  * Babel
@@ -38,3 +38,8 @@ Object.keys(document.defaultView).forEach(property => {
     global[property] = document.defaultView[property];
   }
 });
+
+// Ignore scss files
+require.extensions['.scss'] = () => {
+  return;
+};
