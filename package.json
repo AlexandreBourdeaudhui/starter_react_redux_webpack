@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
@@ -55,11 +56,14 @@
     "eslint-plugin-promise": "^3.0.0",
     "eslint-plugin-react": "^7.3.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^0.14.3",
     "jsdom": "^11.10.0",
+    "lint-staged": "^7.2.0",
     "mini-css-extract-plugin": "^0.4.0",
     "mocha": "^5.2.0",
     "node-sass": "^4.9.2",
     "postcss-loader": "^2.1.6",
+    "prettier": "^1.14.0",
     "react-test-renderer": "^16.4.2",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.21.0",
