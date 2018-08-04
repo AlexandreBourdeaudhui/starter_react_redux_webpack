@@ -22,7 +22,7 @@ export default (state = initialState, action = {}) => {
         ...action.data,
       };
 
-    // If no action is found, Just return the state
+    // If action is not found, just return the state
     default:
       return state;
   }

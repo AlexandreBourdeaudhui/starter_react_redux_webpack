@@ -1,8 +1,4 @@
 /*
- * Local Import
- */
-
-/*
  * Types
  */
 const GET_DATA = 'GET_DATA';
@@ -21,14 +17,11 @@ export default store => next => (action) => {
       console.log('store', store);
       break;
 
-    /*
-     * If the triggered action does not interest us,
-     * We do nothing
-     */
+    // If the triggered action does not interest us, do nothing
     default:
   }
 
-  // Pass to your neighbor
+  // Go to the next middleware
   next(action);
 };
 
