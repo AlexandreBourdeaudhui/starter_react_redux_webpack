@@ -11,7 +11,7 @@
     "test": "test(){ if [ -z $1 ]; then mocha tests/.setup.js 'tests/**/*.test.js'; else mocha tests/.setup.js $1 $2; fi; }; test",
     "lint": "eslint --fix '{app,tests}/**/*.js'",
     "pretty": "prettier --write '{app,tests}/**/*.js'",
-    "precommit": "lint-staged && yarn test"
+    "precommit": "lint-staged"
   },
   "lint-staged": {
     "*.js": [
@@ -36,13 +36,13 @@
     "babel-core": "^6.26.2",
     "babel-eslint": "^8.0.0",
     "babel-loader": "^7.1.4",
+    "babel-plugin-module-resolver": "^3.1.1",
     "babel-plugin-syntax-dynamic-import": "^6.18.0",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-register": "^6.26.0",
-    "babel-resolver": "^1.1.0",
     "chai": "^4.1.2",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^1.0.0",

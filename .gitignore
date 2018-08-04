@@ -1,16 +1,14 @@
-# Thumbs Files Mac
+# Thumbs Files
 .DS_Store
-
-# Thumbs Files Windows
 Thumbs.db
 
 # Dependencies Folder
-node_modules/
+/node_modules
 
 # Dist Folder
-public/
-dist/
-build/
+/public
+/dist
+/build
 
 # Log error
-npm-debug.log
+*.log

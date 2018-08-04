@@ -1,0 +1,14 @@
+# Thumbs Files
+.DS_Store
+Thumbs.db
+
+# Dependencies Folder
+/node_modules
+
+# Dist Folder
+/public
+/dist
+/build
+
+# Log error
+*.log

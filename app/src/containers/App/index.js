@@ -2,6 +2,7 @@
  * Package Import
  */
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 /*
  * Local Import
@@ -21,4 +22,9 @@ const mapDispatchToProps = {};
 /*
  * Export
  */
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps,
+  )(App),
+);
