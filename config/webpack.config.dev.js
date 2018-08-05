@@ -2,7 +2,11 @@
  * Package Import
  */
 const path = require('path');
+
+// Webpack core
 const webpack = require('webpack');
+
+// Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -11,7 +15,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
  */
 
 /*
- * Webpack Configuration
+ * Webpack Configuration • Development
  */
 const config = {
   // Mode
@@ -32,6 +36,13 @@ const config = {
     filename: '[name].js',
     chunkFilename: '[name].chunk.js',
     publicPath: '/',
+  },
+
+  // Optimization › Split the App and vendor files
+  optimization: {
+    splitChunks: {
+      chunks: 'all',
+    },
   },
 
   // Plugins

@@ -2,6 +2,8 @@
  * Package Import
  */
 const path = require('path');
+
+// Webpack Plugins
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ManifestPlugin = require('webpack-manifest-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -14,7 +16,7 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
  */
 
 /*
- * Webpack Configuration
+ * Webpack Configuration • Production
  */
 const config = {
   // Mode
@@ -34,6 +36,11 @@ const config = {
   },
 
   optimization: {
+    // Optimization › Split the App and vendor files
+    splitChunks: {
+      chunks: 'all',
+    },
+
     minimizer: [
       // Uglify JS files
       new UglifyJsPlugin({
