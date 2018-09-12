@@ -14,10 +14,6 @@ import getProvider from './provider';
 /*
  * Code
  */
-
-/*
- * Code
- */
 document.addEventListener('DOMContentLoaded', () => {
   const renderComponent = (Component) => {
     // Get provider
