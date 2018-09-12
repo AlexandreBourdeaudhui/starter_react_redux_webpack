@@ -1,7 +1,7 @@
 /*
  * Package Import
  */
-import 'babel-polyfill';
+import '@babel/polyfill';
 import { render } from 'react-dom';
 
 /*

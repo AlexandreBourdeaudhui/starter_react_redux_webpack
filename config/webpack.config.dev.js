@@ -23,11 +23,7 @@ const config = {
 
   // Entry
   entry: {
-    app: [
-      'react-hot-loader/patch',
-      './app/styles/base.scss',
-      './app/src/index.js',
-    ],
+    app: ['./app/styles/base.scss', './app/src/index.js'],
   },
 
   // Output
