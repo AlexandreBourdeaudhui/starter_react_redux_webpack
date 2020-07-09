@@ -3,22 +3,20 @@
  */
 import React from 'react';
 import { Provider } from 'react-redux';
-import { AppContainer } from 'react-hot-loader';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 /*
  * Local Import
  */
+import App from 'src/components/App';
 
 /*
  * Code
  */
-export default (store, Component) => (
+export default store => (
   <Provider store={store}>
     <Router>
-      <AppContainer>
-        <Component />
-      </AppContainer>
+      <App />
     </Router>
   </Provider>
 );

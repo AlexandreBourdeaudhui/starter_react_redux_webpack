@@ -1,15 +1,41 @@
 {
-  "presets": ["@babel/env", "@babel/react"],
+  "presets": [
+    [
+      "@babel/env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": 3,
+        "modules": false,
+        "targets": ">0.2%, not dead"
+      }
+    ],
+    "@babel/react"
+  ],
   "plugins": [
-    "react-hot-loader/babel",
     "@babel/plugin-syntax-dynamic-import",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-object-rest-spread",
+    "@babel/plugin-proposal-optional-chaining",
+    "@babel/plugin-proposal-nullish-coalescing-operator",
     [
       "module-resolver",
       {
         "root": ["./app"]
       }
     ]
-  ]
+  ],
+  "env": {
+    "development": {
+      "plugins": ["react-hot-loader/babel"]
+    },
+    "production": {
+      "plugins": ["transform-react-remove-prop-types"]
+    },
+    "test": {
+      "presets": [
+        ["@babel/env", { "targets": { "node": "current" } }],
+        "@babel/react"
+      ]
+    }
+  }
 }
